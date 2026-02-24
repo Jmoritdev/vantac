@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vanta-c</title>
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Full-page background ─────────────────────────────────── */
+    body {
+      /*
+       * PLACEHOLDER BACKGROUND
+       * Replace this gradient with a real image, e.g.:
+       *   background-image: url('assets/bg.jpg');
+       */
+      background-image:
+        linear-gradient(135deg, #0d0d2b 0%, #1a1a4e 30%, #0a2a4a 60%, #0d1b2a 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* ── Page layout ──────────────────────────────────────────── */
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    /* ── Hero title ───────────────────────────────────────────── */
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-transform: lowercase;
+      background: linear-gradient(135deg, #fff 30%, #a8d8ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: clamp(2rem, 6vw, 4rem);
+    }
+
+    /* ── Nav links ────────────────────────────────────────────── */
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 1.25rem;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #fff;
+      border-color: #fff;
+      outline: none;
+    }
+
+    /* ── Widget grid ──────────────────────────────────────────── */
+    .widgets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: clamp(2rem, 5vw, 4rem);
+    }
+
+    .widget {
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 1rem;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .widget:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+    }
+
+    .widget-icon {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .widget-title {
+      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .widget-desc {
+      font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    /* ── CTA button ───────────────────────────────────────────── */
+    .cta {
+      display: inline-block;
+      padding: 0.85em 2.2em;
+      background: #fff;
+      color: #111;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 9999px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      background: rgba(255,255,255,0.85);
+      transform: scale(1.04);
+      outline: none;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      position: fixed;
+      bottom: 1.25rem;
+      width: 100%;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page">
+    <!-- Title -->
+    <h1 class="hero-title">vanta-c</h1>
+    <p class="hero-subtitle">your tagline goes here</p>
+
+    <!-- Navigation links -->
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Widgets -->
+    <div class="widgets" role="list">
+      <div class="widget" role="listitem">
+        <div class="widget-icon">⚡</div>
+        <div class="widget-title">Fast &amp; Lightweight</div>
+        <div class="widget-desc">Zero dependencies, pure HTML &amp; CSS for blazing speed.</div>
+      </div>
+      <div class="widget" role="listitem">
+        <div class="widget-icon">📱</div>
+        <div class="widget-title">Fully Responsive</div>
+        <div class="widget-desc">Scales beautifully on every screen—phone to 4K.</div>
+      </div>
+      <div class="widget" role="listitem">
+        <div class="widget-icon">🎨</div>
+        <div class="widget-title">Easy to Customize</div>
+        <div class="widget-desc">Swap the background, palette, and copy in minutes.</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a class="cta" href="#contact">Get in touch</a>
+  </main>
+
+  <footer class="footer">© 2026 vanta-c · All rights reserved</footer>
+
+</body>
+</html>
