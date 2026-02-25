@@ -97,10 +97,10 @@
     /* ── Widget grid ──────────────────────────────────────────── */
     .widgets {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      grid-template-columns: 1fr;
       gap: 1.25rem;
       width: 100%;
-      max-width: 800px;
+      max-width: 960px;
       margin-bottom: clamp(2rem, 5vw, 4rem);
     }
 
@@ -109,8 +109,13 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 1rem;
-      padding: clamp(1.25rem, 3vw, 2rem);
+      border-radius: 0.9rem;
+      padding: 0;
+      overflow: hidden;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background 0.25s, transform 0.25s;
     }
 
@@ -134,6 +139,43 @@
       font-size: clamp(0.8rem, 1.8vw, 0.9rem);
       color: rgba(255,255,255,0.7);
       line-height: 1.5;
+    }
+
+    .widget-inner {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Small contact widget (replaces CTA) */
+    .widget.small-widget {
+      min-height: auto;
+      max-width: 320px;
+      width: auto;
+      border-radius: 0.9rem;
+    }
+    .widget.small-widget .widget-inner {
+      padding: 0.6rem 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .widget.small-widget .widget-icon { font-size: 1.25rem; margin-bottom: 0; }
+    .widget.small-widget .widget-title { font-size: 0.95rem; margin: 0; }
+    .widget.small-widget .widget-desc { font-size: 0.85rem; color: rgba(255,255,255,0.85); margin: 0; }
+
+    /* Full-iframe widget */
+    .widget.full-iframe {
+      /* uses the shared .widget sizing */
+    }
+    .widget.full-iframe iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      border-radius: 0.9rem;
+      vertical-align: top;
     }
 
     /* ── CTA button ───────────────────────────────────────────── */
@@ -175,43 +217,34 @@
 
   <main class="page">
     <!-- Title -->
-    <h1 class="hero-title">vanta-c</h1>
-    <p class="hero-subtitle">your tagline goes here</p>
-
-    <!-- Navigation links -->
-    <nav aria-label="Main navigation">
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <h1 class="hero-title">Vanta-c</h1>
+    <p class="hero-subtitle">DJ - London, UK</p>
 
     <!-- Widgets -->
     <div class="widgets" role="list">
       <div class="widget" role="listitem">
-        <div class="widget-icon">⚡</div>
-        <div class="widget-title">Fast &amp; Lightweight</div>
-        <div class="widget-desc">Zero dependencies, pure HTML &amp; CSS for blazing speed.</div>
+        <div class="widget-inner">
+          <div class="widget-desc">Hailing from London, UK, Vantac thrives to create an atmosphere for getting lost in the music, typically using deep, dark and driving techno based sound to keep people moving.</div>
+        </div>
       </div>
-      <div class="widget" role="listitem">
-        <div class="widget-icon">📱</div>
-        <div class="widget-title">Fully Responsive</div>
-        <div class="widget-desc">Scales beautifully on every screen—phone to 4K.</div>
-      </div>
-      <div class="widget" role="listitem">
-        <div class="widget-icon">🎨</div>
-        <div class="widget-title">Easy to Customize</div>
-        <div class="widget-desc">Swap the background, palette, and copy in minutes.</div>
+      <div class="widget full-iframe" role="listitem">
+        <iframe src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FVantac%2Ftechnohardgroove-for-dungeon-activities%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
       </div>
     </div>
 
-    <!-- CTA -->
-    <a class="cta" href="#contact">Get in touch</a>
+    <!-- Small contact widget (replaces CTA) -->
+    <div class="widget small-widget" role="note">
+      <div class="widget-inner">
+        <div class="widget-icon">✉️</div>
+        <div>
+          <div class="widget-title">Contact</div>
+          <div class="widget-desc">joey@vant.ac</div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer class="footer">© 2026 vanta-c · All rights reserved</footer>
+  <footer class="footer">© 2026 vanta-c</footer>
 
 </body>
 </html>
